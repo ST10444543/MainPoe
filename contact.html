@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <img src="images/logo.png" alt="Sifra Solutions Logo" class="logo">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sifra Solutions - Contact</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        let submitAttempts = 0;
+        const maxAttempts = 3;
+
+        function validateField(field) {
+            const value = field.value.trim();
+            const id = field.id;
+            let errorMsg = "";
+
+            if (value === "") {
+                errorMsg = `${field.previousElementSibling.innerText} is required.`;
+            } else if (id === "email" && !validateEmail(value)) {
+                errorMsg = "Please enter a valid email address.";
+            }
+
+            const errorElement = document.getElementById(`${id}-error`);
+            if (errorMsg) {
+                errorElement.innerText = errorMsg;
+                errorElement.classList.add("show");
+            } else {
+                errorElement.classList.remove("show");
+            }
+
+            return !errorMsg;
+        }
+
+        function validateEmail(email) {
+            const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return re.test(email);
+        }
+
+        function validateForm(event) {
+            event.preventDefault();
+
+            const isFullnameValid = validateField(document.getElementById("fullname"));
+            const isEmailValid = validateField(document.getElementById("email"));
+            const isPhoneValid = validateField(document.getElementById("phone"));
+            const isMessageValid = validateField(document.getElementById("message"));
+
+            if (isFullnameValid && isEmailValid && isPhoneValid && isMessageValid) {
+                alert("Form submitted successfully!");
+                submitAttempts = 0;
+            } else {
+                submitAttempts++;
+                if (submitAttempts >= maxAttempts) {
+                    document.getElementById("warning-message").innerText = "You have missed your chance. The form cannot be submitted.";
+                    document.querySelector("form").style.display = "none";
+                    document.querySelectorAll("input, textarea").forEach(el => el.disabled = true);
+                } else {
+                    document.getElementById("warning-message").innerText = `Attempt ${submitAttempts} of ${maxAttempts}`;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>Contact Us</h1>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+    <a href="news.html">News</a>
+    <a href="cart.html">Cart</a>
+    <a href="trackingOrder.html">Tracking</a>
+
+</nav>
+
+<div class="container">
+    <h2>Get in Touch</h2>
+    <form id="contactForm" onsubmit="validateForm(event)">
+        <label for="fullname">Full Name:</label>
+        <input type="text" id="fullname" name="fullname" oninput="validateField(this)">
+        <div id="fullname-error" class="error"></div>
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" oninput="validateField(this)">
+        <div id="email-error" class="error"></div>
+
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone" oninput="validateField(this)">
+        <div id="phone-error" class="error"></div>
+
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="4" cols="50" oninput="validateField(this)"></textarea>
+        <div id="message-error" class="error"></div>
+
+        <input type="submit" value="Submit">
+    </form>
+    <div id="warning-message" class="warning"></div>
+</div>
+
+<footer>
+    <p>&copy; 2023 Sifra Solutions. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sifra Solutions - Cart</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Function to load cart items from local storage
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartContainer = document.getElementById('cart-items');
+            cartContainer.innerHTML = ''; // Clear existing items
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<p>Your cart is currently empty.</p>';
+                document.getElementById('order-button').style.display = 'none'; // Hide the button if empty
+                document.getElementById('track-button').style.display = 'none'; // Hide the track button if empty
+            } else {
+                cart.forEach((item, index) => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'cart-item';
+
+                    const img = document.createElement('img'); // Corrected to 'img'
+                    img.src = item.image; // Use the image URL stored in cart
+                    img.alt = item.name;
+                    img.className = 'cart-item-image';
+
+                    const details = document.createElement('div');
+                    details.className = 'cart-item-details';
+                    details.textContent = `${item.name} - R${item.price}`;
+
+                    const removeButton = document.createElement('button');
+                    removeButton.textContent = 'Remove';
+                    removeButton.onclick = () => removeFromCart(index);
+
+                    details.appendChild(removeButton);
+                    itemElement.appendChild(img);
+                    itemElement.appendChild(details);
+                    cartContainer.appendChild(itemElement);
+                });
+                document.getElementById('order-button').style.display = 'block'; // Show the order button
+                document.getElementById('track-button').style.display = 'block'; // Show the track button
+            }
+        }
+
+        // Function to remove an item from the cart
+        function removeFromCart(index) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1); // Remove item at the specified index
+            localStorage.setItem('cart', JSON.stringify(cart)); // Update local storage
+            loadCart(); // Reload cart items
+        }
+
+        // Function to handle order now action
+        function orderNow() {
+            alert("Your order has been placed!"); // Placeholder for order processing
+            localStorage.removeItem('cart'); // Clear the cart
+            loadCart(); // Refresh cart
+        }
+
+        // Load cart items when the page is loaded
+        window.onload = loadCart;
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <h1>Cart</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="news.html">News</a>
+        <a href="cart.html">Cart</a>
+        <a href="trackingOrder.html">Tracking</a>
+    </nav>
+
+    <div class="container">
+        <h2>Selected Products</h2>
+        <div id="cart-items"></div>
+        <button id="order-button" style="display:none;" onclick="orderNow()">Order Now</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Sifra Solutions. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>

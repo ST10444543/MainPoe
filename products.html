@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sifra Solutions - Products</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Function to add product to cart with image
+        function addToCart(productName, productPrice, productImage) {
+            // Get existing cart from local storage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            // Add new product to cart
+            cart.push({ name: productName, price: productPrice, image: productImage });
+            // Save updated cart back to local storage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${productName} has been added to your cart!`);
+        }
+        // Function to add product to cart with image
+        function addToCart(productName, productPrice, productImage) {
+            // Get existing cart from local storage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            // Add new product to cart
+            cart.push({ name: productName, price: productPrice, image: `images/${productImage}` });
+            // Save updated cart back to local storage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${productName} has been added to your cart!`);
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <img src="images/logo.png" alt="Sifra Solutions Logo" class="logo">
+        <h1>Our Products</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="news.html">News</a>
+        <a href="cart.html">Cart</a>
+        <a href="trackingOrder.html">Tracking</a>
+    </nav>
+
+    <div class="container">
+        <div class="product">
+            <img src="images/Bleach.png" alt="Bleach">
+            <div>
+                <h2>Bleach</h2>
+                <p>Description of Bleach.</p>
+                <p>Price: R85.00</p>
+                <button onclick="addToCart('Bleach', 85, 'Bleach.png')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="images/Toilet.png" alt="Toilet Bowl">
+            <div>
+                <h2>Toilet Bowl</h2>
+                <p>Description of Toilet Bowl.</p>
+                <p>Price: R85.00</p>
+                <button onclick="addToCart('Toilet Bowl', 85, 'Toilet.png')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="images/Fabric.png" alt="Fabric Softener">
+            <div>
+                <h2>Fabric Softener</h2>
+                <p>Description of Fabric Softener.</p>
+                <p>Price: R85.00</p>
+                <button onclick="addToCart('Fabric Softener', 85, 'Fabric.png')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="images/DishWash.png" alt="Dish Wash">
+            <div>
+                <h2>Dish Wash</h2>
+                <p>Description of Dish Wash.</p>
+                <p>Price: R70.00</p>
+                <button onclick="addToCart('Dish Wash', 70, 'DishWash.png')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="images/HandyAndy.png" alt="Handy Andy">
+            <div>
+                <h2>Handy Andy</h2>
+                <p>Description of Handy Andy.</p>
+                <p>Price: R90.00</p>
+                <button onclick="addToCart('Handy Andy', 90, 'HandyAndy.png')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="images/Kitchen.png" alt="Kitchen Cleaner">
+            <div>
+                <h2>Kitchen Cleaner</h2>
+                <p>Description of Kitchen Cleaner.</p>
+                <p>Price: R80.00</p>
+                <button onclick="addToCart('Kitchen Cleaner', 80, 'Kitchen.png')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="images/Oven.png" alt="Oven Cleaner">
+            <div>
+                <h2>Oven Cleaner</h2>
+                <p>Description of Oven Cleaner.</p>
+                <p>Price: R95.00</p>
+                <button onclick="addToCart('Oven Cleaner', 95, 'Oven.png')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="images/Stove.png" alt="Stove Cleaner">
+            <div>
+                <h2>Stove Cleaner</h2>
+                <p>Description of Stove Cleaner.</p>
+                <p>Price: R85.00</p>
+                <button onclick="addToCart('Stove Cleaner', 85, 'Stove.png')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="images/Window.png" alt="Window Cleaner">
+            <div>
+                <h2>Window Cleaner</h2>
+                <p>Description of Window Cleaner.</p>
+                <p>Price: R75.00</p>
+                <button onclick="addToCart('Window Cleaner', 75, 'Window.png')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="images/Zink.png" alt="Zink Cleaner">
+            <div>
+                <h2>Zink Cleaner</h2>
+                <p>Description of Zink Cleaner.</p>
+                <p>Price: R80.00</p>
+                <button onclick="addToCart('Zink Cleaner', 80, 'Zink.png')">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Sifra Solutions. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>

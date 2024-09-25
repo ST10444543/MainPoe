@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <img src="images/logo.png" alt="Sifra Solutions Logo" class="logo">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Order - Sifra Solutions</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Function to track the order
+        function trackOrder() {
+            const orderId = document.getElementById('order-id').value;
+            // Placeholder for fetching order tracking information
+            if (orderId) {
+                // Simulate an API call to get order status
+                const orderStatus = "Your order is on the way! Estimated delivery: 2 days.";
+                document.getElementById('order-status').textContent = orderStatus;
+            } else {
+                alert("Please enter a valid Order ID.");
+            }
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>Track Your Order</h1>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+    <a href="news.html">News</a>
+    <a href="cart.html">Cart</a>
+    <a href="trackingOrder.html">Tracking</a>
+
+</nav>
+
+<div class="container">
+    <h2>Order Tracking</h2>
+    <label for="order-id">Enter your Order ID:</label>
+    <input type="text" id="order-id" placeholder="Order ID">
+    <button onclick="trackOrder()">Track Order</button>
+
+    <div id="order-status" style="margin-top: 20px;"></div>
+</div>
+
+<footer>
+    <p>&copy; 2023 Sifra Solutions. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
