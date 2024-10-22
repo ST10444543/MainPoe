@@ -5,7 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sifra Solutions - Home</title>
     <link rel="stylesheet" href="styles.css">
-    
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Toggle hamburger menu
+            $('.hamburger').click(function() {
+                $('.nav-links').slideToggle();
+            });
+
+            // Make elements draggable
+            $(".draggable").draggable();
+
+            // Make elements droppable
+            $(".droppable").droppable({
+                drop: function(event, ui) {
+                    $(this).addClass("ui-state-highlight").find("p").html("Dropped!");
+                }
+            });
+
+            // Make elements resizable
+            $(".resizable").resizable();
+
+            // Make elements selectable
+            $(".selectable").selectable();
+
+            // Make elements sortable
+            $(".sortable").sortable();
+        });
+    </script>
 </head>
 <body>
 
@@ -15,19 +44,24 @@
 </header>
 
 <nav>
-    <a href="index.html">Home</a>
-    <a href="products.html">Products</a>
-    <a href="about.html">About Us</a>
-    <a href="contact.html">Contact</a>
-    <a href="news.html">News</a>
-    <a href="cart.html">Cart</a>
-    <a href="trackingOrder.html">Tracking</a>
+    <div class="hamburger">☰</div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="news.html">News</a>
+        <a href="cart.html">Cart</a>
+        <a href="trackingOrder.html">Tracking</a>
+    </div>
 </nav>
 
 <div class="container">
     <h2>About Our Business</h2>
     <p>We provide high-quality products to meet your needs. Our mission is to deliver excellence and value to our customers.</p>
-    <iframe src="https://www.youtube.com/embed/7N-4Lx_JxK0" frameborder="0" allowfullscreen ></iframe>
+    <iframe src="https://www.youtube.com/embed/7N-4Lx_JxK0" frameborder="0" allowfullscreen></iframe>
+
+
 </div>
 
 <footer>

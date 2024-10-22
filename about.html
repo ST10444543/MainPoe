@@ -13,7 +13,14 @@
     <h1>About Us</h1>
 </header>
 
-<nav>
+<!-- Hamburger Menu -->
+<div class="hamburger" id="hamburger">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+</div>
+
+<nav id="nav">
     <a href="index.html">Home</a>
     <a href="products.html">Products</a>
     <a href="about.html">About Us</a>
@@ -21,7 +28,6 @@
     <a href="news.html">News</a>
     <a href="cart.html">Cart</a>
     <a href="trackingOrder.html">Tracking</a>
-
 </nav>
 
 <div class="container">
@@ -35,6 +41,15 @@
 <footer>
     <p>&copy; 2023 Sifra Solutions. All rights reserved.</p>
 </footer>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('nav');
+
+    hamburger.addEventListener('click', () => {
+        nav.classList.toggle('active');
+    });
+</script>
 
 </body>
 </html>

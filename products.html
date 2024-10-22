@@ -6,28 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sifra Solutions - Products</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script>
-        // Function to add product to cart with image
-        function addToCart(productName, productPrice, productImage) {
-            // Get existing cart from local storage
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            // Add new product to cart
-            cart.push({ name: productName, price: productPrice, image: productImage });
-            // Save updated cart back to local storage
-            localStorage.setItem('cart', JSON.stringify(cart));
-            alert(`${productName} has been added to your cart!`);
-        }
-        // Function to add product to cart with image
-        function addToCart(productName, productPrice, productImage) {
-            // Get existing cart from local storage
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            // Add new product to cart
-            cart.push({ name: productName, price: productPrice, image: `images/${productImage}` });
-            // Save updated cart back to local storage
-            localStorage.setItem('cart', JSON.stringify(cart));
-            alert(`${productName} has been added to your cart!`);
-        }
+        $(document).ready(function() {
+            // jQuery event handler for Add to Cart buttons
+            $('.add-to-cart').click(function() {
+                const productName = $(this).data('name');
+                const productPrice = $(this).data('price');
+                const productImage = $(this).data('image');
 
+                // Get existing cart from local storage
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                // Add new product to cart
+                cart.push({ name: productName, price: productPrice, image: `images/${productImage}` });
+                // Save updated cart back to local storage
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert(`${productName} has been added to your cart!`);
+            });
+
+            // Make product elements draggable
+            $('.product').draggable({
+                revert: "invalid" // Revert if not dropped on droppable
+            });
+
+            // Make the container a droppable area
+            $('.container').droppable({
+                accept: '.product',
+                drop: function(event, ui) {
+                    $(this).append(ui.draggable);
+                }
+            });
+
+            // Make products resizable
+            $('.product').resizable();
+
+            // Make products selectable
+            $('.product').selectable();
+
+            // Make products sortable
+            $('.container').sortable({
+                items: '.product'
+            });
+        });
     </script>
 </head>
 
@@ -55,7 +77,7 @@
                 <h2>Bleach</h2>
                 <p>Description of Bleach.</p>
                 <p>Price: R85.00</p>
-                <button onclick="addToCart('Bleach', 85, 'Bleach.png')">Add to Cart</button>
+                <button class="add-to-cart" data-name="Bleach" data-price="85" data-image="Bleach.png">Add to Cart</button>
             </div>
         </div>
         <div class="product">
@@ -64,7 +86,7 @@
                 <h2>Toilet Bowl</h2>
                 <p>Description of Toilet Bowl.</p>
                 <p>Price: R85.00</p>
-                <button onclick="addToCart('Toilet Bowl', 85, 'Toilet.png')">Add to Cart</button>
+                <button class="add-to-cart" data-name="Toilet Bowl" data-price="85" data-image="Toilet.png">Add to Cart</button>
             </div>
         </div>
         <div class="product">
@@ -73,7 +95,7 @@
                 <h2>Fabric Softener</h2>
                 <p>Description of Fabric Softener.</p>
                 <p>Price: R85.00</p>
-                <button onclick="addToCart('Fabric Softener', 85, 'Fabric.png')">Add to Cart</button>
+                <button class="add-to-cart" data-name="Fabric Softener" data-price="85" data-image="Fabric.png">Add to Cart</button>
             </div>
         </div>
         <div class="product">
@@ -82,7 +104,7 @@
                 <h2>Dish Wash</h2>
                 <p>Description of Dish Wash.</p>
                 <p>Price: R70.00</p>
-                <button onclick="addToCart('Dish Wash', 70, 'DishWash.png')">Add to Cart</button>
+                <button class="add-to-cart" data-name="Dish Wash" data-price="70" data-image="DishWash.png">Add to Cart</button>
             </div>
         </div>
         <div class="product">
@@ -91,7 +113,7 @@
                 <h2>Handy Andy</h2>
                 <p>Description of Handy Andy.</p>
                 <p>Price: R90.00</p>
-                <button onclick="addToCart('Handy Andy', 90, 'HandyAndy.png')">Add to Cart</button>
+                <button class="add-to-cart" data-name="Handy Andy" data-price="90" data-image="HandyAndy.png">Add to Cart</button>
             </div>
         </div>
         <div class="product">
@@ -100,7 +122,7 @@
                 <h2>Kitchen Cleaner</h2>
                 <p>Description of Kitchen Cleaner.</p>
                 <p>Price: R80.00</p>
-                <button onclick="addToCart('Kitchen Cleaner', 80, 'Kitchen.png')">Add to Cart</button>
+                <button class="add-to-cart" data-name="Kitchen Cleaner" data-price="80" data-image="Kitchen.png">Add to Cart</button>
             </div>
         </div>
         <div class="product">
@@ -109,7 +131,7 @@
                 <h2>Oven Cleaner</h2>
                 <p>Description of Oven Cleaner.</p>
                 <p>Price: R95.00</p>
-                <button onclick="addToCart('Oven Cleaner', 95, 'Oven.png')">Add to Cart</button>
+                <button class="add-to-cart" data-name="Oven Cleaner" data-price="95" data-image="Oven.png">Add to Cart</button>
             </div>
         </div>
         <div class="product">
@@ -118,7 +140,7 @@
                 <h2>Stove Cleaner</h2>
                 <p>Description of Stove Cleaner.</p>
                 <p>Price: R85.00</p>
-                <button onclick="addToCart('Stove Cleaner', 85, 'Stove.png')">Add to Cart</button>
+                <button class="add-to-cart" data-name="Stove Cleaner" data-price="85" data-image="Stove.png">Add to Cart</button>
             </div>
         </div>
         <div class="product">
@@ -127,7 +149,7 @@
                 <h2>Window Cleaner</h2>
                 <p>Description of Window Cleaner.</p>
                 <p>Price: R75.00</p>
-                <button onclick="addToCart('Window Cleaner', 75, 'Window.png')">Add to Cart</button>
+                <button class="add-to-cart" data-name="Window Cleaner" data-price="75" data-image="Window.png">Add to Cart</button>
             </div>
         </div>
         <div class="product">
@@ -136,7 +158,7 @@
                 <h2>Zink Cleaner</h2>
                 <p>Description of Zink Cleaner.</p>
                 <p>Price: R80.00</p>
-                <button onclick="addToCart('Zink Cleaner', 80, 'Zink.png')">Add to Cart</button>
+                <button class="add-to-cart" data-name="Zink Cleaner" data-price="80" data-image="Zink.png">Add to Cart</button>
             </div>
         </div>
     </div>
